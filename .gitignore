@@ -36,6 +36,7 @@ env.local
 *.ntvs*
 *.njsproj
 *.sln
+*.kiro
 
 # OS files
 .DS_Store
@@ -67,3 +68,11 @@ goonee-website/scan/embed_pages/
 goonee-website/scan/**
 !goonee-website/scan/scan.html
 !goonee-website/scan/Intro.mp4
+DEPLOYMENT_INTEGRATION_GUIDE.md
+FINAL_DEBUG_COMPLETION.md
+DEV_PLAYGROUND_FEATURES.md
+FINAL_DEBUG_RESOLUTION.md
+QUICK_REFERENCE_GUIDE.md
+WIDGET_ECOSYSTEM_GUIDE.md
+DEBUG_FIX_SUMMARY.md
+DEBUG_TROUBLESHOOTING_GUIDE.md

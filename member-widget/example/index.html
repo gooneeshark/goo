@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Widget Demo</title>
+    
+    <!-- Supabase Configuration -->
+    <meta name="supabase-url" content="YOUR_SUPABASE_URL">
+    <meta name="supabase-key" content="YOUR_SUPABASE_ANON_KEY">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+        }
+        
+        .header h1 {
+            color: #00ff00;
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        
+        .header p {
+            color: #ffffff;
+            font-size: 1.2em;
+            margin: 0;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .section {
+            background: #2c3e50;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+        }
+        
+        .section h2 {
+            color: #00ff00;
+            margin-top: 0;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #00ff00;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .demo-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .demo-btn {
+            background: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-btn:hover {
+            background: #00cc00;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+        
+        .demo-btn.secondary {
+            background: transparent;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+        }
+        
+        .demo-btn.secondary:hover {
+            background: #00ff00;
+            color: #000000;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: #34495e;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00ff00;
+        }
+        
+        .feature h3 {
+            color: #00ff00;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        
+        .feature ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .feature li {
+            margin-bottom: 8px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: #2c3e50;
+            border-radius: 10px;
+            border: 1px solid #00ff00;
+        }
+        
+        .footer a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .demo-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Member Widget Demo</h1>
+            <p>Embeddable authentication widget for any website</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Quick Start</h2>
+                <p>Add the Member Widget to your website with just a few lines of code:</p>
+                
+                <div class="code-block">
+&lt;!-- Add widget container --&gt;
+&lt;div id="member-widget"&gt;&lt;/div&gt;
+
+&lt;!-- Load widget script --&gt;
+&lt;script src="member-widget.js"&gt;&lt;/script&gt;
+
+&lt;!-- Initialize widget --&gt;
+&lt;script&gt;
+new MemberWidget({
+    containerId: 'member-widget',
+    apiUrl: 'http://localhost:5173',
+    theme: 'hacker',
+    position: 'bottom-right'
+});
+&lt;/script&gt;
+                </div>
+                
+                <div class="demo-buttons">
+                    <button class="demo-btn" onclick="createWidget('bottom-right')">
+                        Bottom Right
+                    </button>
+                    <button class="demo-btn secondary" onclick="createWidget('bottom-left')">
+                        Bottom Left
+                    </button>
+                    <button class="demo-btn secondary" onclick="createWidget('top-right')">
+                        Top Right
+                    </button>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Configuration</h2>
+                <p>Customize the widget appearance and behavior:</p>
+                
+                <div class="code-block">
+new MemberWidget({
+    containerId: 'member-widget',
+    apiUrl: 'http://localhost:5173',
+    theme: 'hacker', // 'hacker', 'dark', 'light'
+    position: 'bottom-right',
+    size: 'medium', // 'small', 'medium', 'large'
+    collapsed: true,
+    
+    // Custom colors
+    colors: {
+        primary: '#00ff00',
+        background: '#000000',
+        text: '#ffffff'
+    },
+    
+    // Event callbacks
+    onLogin: (user) => {
+        console.log('User logged in:', user);
+    },
+    onLogout: () => {
+        console.log('User logged out');
+    }
+});
+                </div>
+                
+                <div class="demo-buttons">
+                    <button class="demo-btn" onclick="createCustomWidget()">
+                        Custom Theme
+                    </button>
+                    <button class="demo-btn secondary" onclick="createInlineWidget()">
+                        Inline Widget
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🔐 Secure Authentication</h3>
+                <ul>
+                    <li>Supabase integration</li>
+                    <li>JWT token management</li>
+                    <li>Session persistence</li>
+                    <li>Auto-refresh tokens</li>
+                </ul>
+            </div>
+            
+            <div class="feature">
+                <h3>🎨 Customizable Themes</h3>
+                <ul>
+                    <li>Hacker terminal style</li>
+                    <li>Dark and light themes</li>
+                    <li>Custom color schemes</li>
+                    <li>Responsive design</li>
+                </ul>
+            </div>
+            
+            <div class="feature">
+                <h3>📱 Mobile Friendly</h3>
+                <ul>
+                    <li>Responsive layout</li>
+                    <li>Touch-friendly controls</li>
+                    <li>Mobile optimized</li>
+                    <li>Cross-browser support</li>
+                </ul>
+            </div>
+            
+            <div class="feature">
+                <h3>⚡ Easy Integration</h3>
+                <ul>
+                    <li>Single JavaScript file</li>
+                    <li>No dependencies</li>
+                    <li>Auto-initialization</li>
+                    <li>Event callbacks</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Inline widget demo -->
+        <div class="section">
+            <h2>Inline Widget Demo</h2>
+            <p>This widget is embedded inline within the page content:</p>
+            <div id="inline-widget" data-member-widget 
+                 data-api-url="http://localhost:5173"
+                 data-theme="hacker" 
+                 data-position="inline"
+                 data-collapsed="false">
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>
+                <strong>Member Widget</strong> - 
+                <a href="https://github.com/your-repo/member-widget" target="_blank" rel="noopener noreferrer">GitHub</a> | 
+                <a href="../docs/API_DOCUMENTATION.md" target="_blank" rel="noopener noreferrer">API Docs</a> | 
+                <a href="../docs/WIDGET_INSTALLATION_GUIDE.md" target="_blank" rel="noopener noreferrer">Installation Guide</a>
+            </p>
+        </div>
+    </div>
+    
+    <!-- Load Member Widget -->
+    <script src="../src/core/MemberWidget.js"></script>
+    <script src="../src/components/LoginPanel.js"></script>
+    <script src="../src/components/ProfileDisplay.js"></script>
+    <script src="../src/components/MessageInbox.js"></script>
+    
+    <script>
+        // Global widget instances for demo
+        let widgets = [];
+        
+        // Demo functions
+        function createWidget(position) {
+            // Remove existing widgets
+            clearWidgets();
+            
+            const widget = new MemberWidget({
+                containerId: 'demo-widget-' + Date.now(),
+                apiUrl: 'http://localhost:5173',
+                theme: 'hacker',
+                position: position,
+                size: 'medium',
+                collapsed: true,
+                onLogin: (user) => {
+                    console.log('Demo widget - User logged in:', user);
+                    showNotification('Login successful!', 'success');
+                },
+                onLogout: () => {
+                    console.log('Demo widget - User logged out');
+                    showNotification('Logged out successfully!', 'info');
+                },
+                onError: (error) => {
+                    console.error('Demo widget error:', error);
+                    showNotification('Error: ' + error.message, 'error');
+                }
+            });
+            
+            widgets.push(widget);
+        }
+        
+        function createCustomWidget() {
+            clearWidgets();
+            
+            const widget = new MemberWidget({
+                containerId: 'custom-widget-' + Date.now(),
+                apiUrl: 'http://localhost:5173',
+                theme: 'custom',
+                position: 'top-left',
+                size: 'large',
+                collapsed: true,
+                colors: {
+                    primary: '#ff6b35',
+                    secondary: '#f7931e',
+                    background: '#2c3e50',
+                    text: '#ecf0f1',
+                    border: '#ff6b35'
+                },
+                onLogin: (user) => {
+                    showNotification('Welcome to custom theme!', 'success');
+                }
+            });
+            
+            widgets.push(widget);
+        }
+        
+        function createInlineWidget() {
+            // This will be auto-initialized by the data attributes
+            showNotification('Check the inline widget below!', 'info');
+        }
+        
+        function clearWidgets() {
+            widgets.forEach(widget => {
+                try {
+                    widget.destroy();
+                } catch (e) {
+                    console.warn('Error destroying widget:', e);
+                }
+            });
+            widgets = [];
+        }
+        
+        function showNotification(message, type = 'info') {
+            // Simple notification system
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${type === 'success' ? '#00ff00' : type === 'error' ? '#ff4444' : '#0099ff'};
+                color: ${type === 'success' ? '#000000' : '#ffffff'};
+                padding: 12px 20px;
+                border-radius: 5px;
+                font-family: 'Courier New', monospace;
+                font-weight: bold;
+                z-index: 1000000;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        // Set up Supabase configuration for demo
+        // In a real implementation, these would come from your environment
+        window.SUPABASE_URL = 'YOUR_SUPABASE_URL';
+        window.SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+        
+        // Show setup instructions if Supabase is not configured
+        if (!window.SUPABASE_URL || window.SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+            setTimeout(() => {
+                showNotification('Please configure Supabase credentials in the HTML file', 'error');
+            }, 1000);
+        }
+        
+        // Initialize inline widget automatically
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Member Widget Demo loaded');
+        });
+    </script>
+</body>
+</html>

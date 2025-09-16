@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="th">
+<head>
+    <link rel="stylesheet" href="../../assets/goonee-collapsible-nav.css">
+    <script defer src="../../assets/goonee-collapsible-nav.js"></script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gambling API Lab — Pages</title>
+  <link rel="apple-touch-icon" href="../../icon/192x192.png">
+  <link rel="manifest" href="/docs/manifest.webmanifest">
+  <style>body{font-family:Segoe UI,Arial,sans-serif;padding:24px;background:#f7f7f7}a{color:#0b66ff}</style>
+</head>
+<body>
+<!-- Goonee collapsible nav injected (auto) -->
+<div class="goonee-cnav-root">
+  <button class="goonee-cnav-toggle goonee-cnav-left" aria-label="Open navigation" data-goonee-toggle data-goonee-target="goonee-panel-auto-30" data-goonee-overlay="goonee-overlay-auto-30" aria-expanded="false">☰</button>
+  <div id="goonee-overlay-auto-30" class="goonee-cnav-overlay" tabindex="-1"></div>
+  <nav id="goonee-panel-auto-30" class="goonee-cnav-panel" aria-hidden="true">
+    <div class="goonee-cnav-header">
+      <div class="goonee-cnav-title">เมนู</div>
+      <button class="goonee-cnav-close" aria-label="Close">✕</button>
+    </div>
+    <ul class="goonee-cnav-list">
+      <li><a href="/">หน้าแรก</a></li>
+      <li><a href="/guide.html">เกี่ยวกับ</a></li>
+      <li class="goonee-cnav-item">
+        <button class="goonee-cnav-subtoggle" data-goonee-subtoggle data-goonee-subtarget="goonee-sublist-auto-30" aria-controls="goonee-sublist-auto-30">ตัวอย่างผลงานอื่นๆ <span class="goonee-cnav-caret">›</span></button>
+        <ul id="goonee-sublist-auto-30" class="goonee-cnav-sublist" aria-hidden="true">
+          <li><a href="https://sharkkadaw.netlify.app/" target="_blank" rel="noopener">Sharkkadaw</a></li>
+          <li><a href="https://goonee.netlify.app/ai/scan" target="_blank" rel="noopener">Goonee Scan</a></li>
+        </ul>
+      </li>
+      <li><a href="/contact.html">ติดต่อ</a></li>
+    </ul>
+  </nav>
+</div>
+
+  <h1>Gambling API Lab (GitHub Pages)</h1>
+  <p>เปิดลิงก์ด้านล่างบนมือถือหรือเดสก์ท็อป:</p>
+  <ul>
+    <li><a href="GamblingAPI_lab.html">Open GamblingAPI_lab</a></li>
+    <li><a href="LAB_SLIDES.html">Open Slides</a></li>
+    <li><a href="WORKSHEET_GamblingLAB.md">Open Worksheet (markdown)</a></li>
+    <li><a href="README_GamblingLAB.md">Lab README</a></li>
+  </ul>
+  <p class="small">หลัง push ขึ้น GitHub ให้ไปที่ Settings → Pages → เลือก branch main / folder /docs เพื่อเปิด Pages</p>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.gooneeCollapsibleNav && typeof window.gooneeCollapsibleNav.init === 'function') {
+      window.gooneeCollapsibleNav.init({ idPrefix: 'goonee' });
+    }
+  });
+</script>
+</html>

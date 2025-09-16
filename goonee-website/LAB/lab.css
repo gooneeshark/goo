@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+
+body { 
+    font-family: 'Sarabun', sans-serif; 
+    background: #0a0a0a;
+    color: #e0e0e0;
+}
+
+.gradient-bg { 
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.gradient-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.1" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.card-hover { 
+    transition: all 0.3s ease; 
+    background: rgba(20, 20, 30, 0.8);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.card-hover:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 20px 40px rgba(100, 255, 218, 0.1);
+    border-color: rgba(100, 255, 218, 0.3);
+    background: rgba(20, 20, 30, 0.9);
+}
+
+.code-block { 
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%); 
+    border-radius: 8px; 
+    overflow-x: auto;
+    border: 1px solid #30363d;
+    font-family: 'Fira Code', monospace;
+}
+
+.difficulty-easy { background: linear-gradient(45deg, #00ff88, #00cc6a); }
+.difficulty-medium { background: linear-gradient(45deg, #ffaa00, #ff8800); }
+.difficulty-hard { background: linear-gradient(45deg, #ff0066, #cc0044); }
+
+.matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.05;
+}
+
+.glitch-text {
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+.secret-hover {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.secret-hover:hover {
+    color: #00ff88 !important;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+.easter-egg {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.easter-egg.revealed {
+    opacity: 1;
+}
+
+.hacker-cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.neon-glow {
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+    border: 1px solid rgba(100, 255, 218, 0.5);
+}
+
+.terminal-green { color: #00ff88; }
+.terminal-red { color: #ff0066; }
+.terminal-yellow { color: #ffaa00; }
+.terminal-blue { color: #0099ff; }
+.terminal-purple { color: #cc66ff; }
+
+/* Fallback positioning for the background canvas and modal z-index.
+    This ensures the canvas stays behind content even if Tailwind doesn't load. */
+#matrix-canvas { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; pointer-events: none; }
+#lab-modal { z-index: 50; }
+
+/* Enhanced mobile-first responsive design */
+@media (max-width: 768px) {
+    .grid-cols-1 { grid-template-columns: 1fr !important; }
+    .md\:grid-cols-2 { grid-template-columns: 1fr !important; }
+    
+    /* Mobile-friendly buttons */
+    button, .start-btn {
+        min-height: 44px !important;
+        font-size: 16px !important;
+        padding: 12px 16px !important;
+    }
+    
+    /* Touch-friendly spacing */
+    .gap-4 { gap: 1.5rem !important; }
+    .p-4 { padding: 1.5rem !important; }
+    
+    /* Readable text sizes */
+    .text-sm { font-size: 16px !important; }
+    body { font-size: 16px !important; }
+    
+    /* Modal improvements */
+    #lab-modal .bg-gray-900 {
+        width: 95vw !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+}
+
+/* Minimal fallback utility classes used by the page so content remains visible
+    if Tailwind CDN fails to load on mobile. Keep these lightweight. */
+.hidden { display: none !important; }
+.flex { display: flex !important; }
+.items-center { align-items: center !important; }
+.justify-between { justify-content: space-between !important; }
+.space-x-2 > * + * { margin-left: 0.5rem !important; }
+.p-4 { padding: 1rem !important; }
+.text-2xl { font-size: 1.5rem !important; }
+.text-xl { font-size: 1.25rem !important; }
+.text-lg { font-size: 1.125rem !important; }
+.font-bold { font-weight: 700 !important; }
+.font-semibold { font-weight: 600 !important; }
+.grid { display: grid !important; }
+.grid-cols-1 { grid-template-columns: 1fr !important; }
+.md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr) !important; }
+.gap-4 { gap: 1rem !important; }
+.rounded { border-radius: 8px !important; }
+.fixed { position: fixed !important; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.list-none { list-style: none; padding: 0; margin: 0; }
+.bg-gray-900 { background-color: #111827 !important; }
+.bg-gray-800 { background-color: #1f2937 !important; }
+.bg-blue-600 { background-color: #2563eb !important; }
+.bg-yellow-500 { background-color: #eab308 !important; }
+.bg-red-600 { background-color: #dc2626 !important; }
+.text-white { color: #ffffff !important; }
+.text-black { color: #000000 !important; }
+.border { border-width: 1px !important; }
+.border-gray-700 { border-color: #374151 !important; }
+.w-11\/12 { width: 91.666667% !important; }
+.max-w-3xl { max-width: 48rem !important; }
+.mt-2 { margin-top: 0.5rem !important; }
+.mt-3 { margin-top: 0.75rem !important; }
+.mt-6 { margin-top: 1.5rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.px-2 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+.px-3 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+.py-1 { padding-top: 0.25rem !important; padding-bottom: 0.25rem !important; }
+.cursor-pointer { cursor: pointer !important; }
+
+/* Error/banner used when JS fails */
+.error-banner { background: #ffdde0; color: #660000; padding: 10px 12px; border-radius: 6px; margin: 8px 0; font-weight: 600; }
+.error-banner.hidden { display: none; }
