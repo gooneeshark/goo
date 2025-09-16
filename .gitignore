@@ -66,3 +66,4 @@ goonee-website/scan/embed_pages/
 # Ignore everything under scan except scan.html (keep scan only accessible by direct link)
 goonee-website/scan/**
 !goonee-website/scan/scan.html
+!goonee-website/scan/Intro.mp4
